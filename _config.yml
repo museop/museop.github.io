@@ -4,7 +4,7 @@ permalink:           pretty
 title:               Welcome To Museop's Blog~!
 tagline:             ''
 description:         'This Blog is using my study.'
-url:                 http://robustflame.github.io
+url:                 http://museop.github.io
 baseurl:             ''
 paginate:            5
 
@@ -12,10 +12,13 @@ paginate:            5
 author:
   name:              Kim Museop
   url:               
-  email:             robustFlame@gmail.com
+  email:             kms920806@naver.com
 
 # Custom vars
 version:             1.0.0
 
 gems: [jekyll-paginate]
 paginate_path: "page:num"
+
+markdown: kramdown
+mathjax: true
