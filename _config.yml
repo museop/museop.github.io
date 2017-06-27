@@ -1,0 +1,21 @@
+permalink:           pretty
+
+# Setup
+title:               Welcome To Museop's Blog~!
+tagline:             ''
+description:         'This Blog is using my study.'
+url:                 http://robustflame.github.io
+baseurl:             ''
+paginate:            5
+
+# About/contact
+author:
+  name:              Kim Museop
+  url:               
+  email:             robustFlame@gmail.com
+
+# Custom vars
+version:             1.0.0
+
+gems: [jekyll-paginate]
+paginate_path: "page:num"

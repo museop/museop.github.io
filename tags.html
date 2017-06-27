@@ -1,0 +1,42 @@
+---
+layout: page
+title: Tags
+---
+<section class="post-tags">
+    {% assign tags_list = site.tags | sort %}
+
+    {% if tags_list.first[0] == null %}
+      {% for tag in tags_list %}
+        <a class="post-tags-item" href="#{{ tag | slugify }}">{{ tag }}</a>
+      {% endfor %}
+    {% else %}
+      {% for tag in tags_list %}
+        <a class="post-tags-item" href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+      {% endfor %}
+    {% endif %}
+
+    {% assign tags_list = nil %}
+
+</section>
+<hr>
+    {% for tag in site.tags  %}
+
+      {% assign tag_name = tag[0] %}
+      <h2 id="{{ tag_name | slugify }}"><span class="post-tags-name">{{ tag_name | capitalize }} [{{ site.tags[tag_name].size }}]</span></h2>
+
+      <ul>
+          {% assign pages_list = tag[1] %}
+          {% for post in pages_list reversed %}
+            {% if post.title != null %}
+              {% if group == null or group == post.group %}
+              <li class="post-link">
+      		      <a href="{{ site.url }}{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                <span class="date"> - {{ post.date | date_to_long_string }}</span>
+              </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% assign pages_list = nil %}
+          {% assign group = nil %}
+      </ul>
+    {% endfor %}
