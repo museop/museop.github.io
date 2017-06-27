@@ -1,4 +1,4 @@
-permalink:           pretty
+
 
 # Setup
 title:               Welcome To Museop's Blog~!
@@ -21,4 +21,5 @@ gems: [jekyll-paginate]
 paginate_path: "page:num"
 
 markdown: kramdown
-mathjax: true
+permalink: /:categories/:title
+math: true
