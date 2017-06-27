@@ -4,19 +4,37 @@ title: 포스팅 테스트
 category: General
 tag: [test]
 ---
-# (1) 큰 제목
-이것은 큰 제목
-## 1.1 중간 제목
+
+
+
+[TOC]
+
+# 마크다운 문법 및 Mathjax 테스트
+
+'#' 을 이용해 h1, h2, h3, .. 등을 표현한다
+## (1) 마크다운 문법 테스트
 이것은 중간 제목
-### 1.1.1 소제목
-리스트 테스트
+### 1.1 List 테스트
+#### unordered list
+
 - Linux
+  - Ubuntu
+  - Mint
 - Windows
+  - Windows 10
+  - Windows 7
+  - Windows XP
 - Mac OS
 
 
-### 1.1.2 소제목 2
-코드 하이라이팅 테스트
+#### ordered list
+
+1. 문제를 읽는다.
+2. 어떻게 풀지 생각한다.
+3. 푼다.
+
+### 1.2 코드 하이라이팅 테스트
+아래와 같이 **코드**를 작성할 수 있다.
 ```c++
 #include <iostream>
 using namespace std;
@@ -27,14 +45,32 @@ int main()
   return 0;
 }
 ```
+### 1.3 Task list
+매일 할 일..
 
-### 1.1.3 소제목 3
+- [ ] 영어듣기
+- [ ] 알고리즘 문제 풀기
 
-수식 테스트... 
+### 1.4 인용문
 
-1. 인라인 테스트 <span>$a^b$</span>,
-2. 이것도 안되면 이것 <span>\\(a^b\\)</span>
-3. 블럭은 $$ax^2+bx+c=0$$
-4. div에 넣어서 사용해보기
+아래와 같이 인용문을 사용할 수 있다.
 
-<div>$$ ax^2+bx+c=0 $$</div>
+> *"C is quirky, flawed, and an enormous success.” - Dennis M.Ritchie*
+
+### 1.5 테이블
+
+| 월, 수 | 화, 목 | 금, 토, 일 |
+| :--: | :--: | :-----: |
+|  게임  |  코딩  |   게임    |
+|  코딩  |  게임  |   코딩    |
+|  영어  |  영어  |   영어    |
+
+
+### (2) Mathjax 테스트
+
+인라인은 이렇게 $$O(n^2)$$ 작성하고, 블럭은 아래와 같이 작성하면 된다.
+
+$$ ax^2+bx+c=0 $$
+
+
+
