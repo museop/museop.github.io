@@ -5,9 +5,8 @@ category: General
 tag: [test]
 ---
 
-
-
-[TOC]
+* list element with functor item
+{:toc}
 
 # 마크다운 문법 및 Mathjax 테스트
 
@@ -41,23 +40,18 @@ using namespace std;
 
 int main()
 {
-  cout << "hello, world" << endl;
-  return 0;
+    cout << "hello, world" << endl;
+    return 0;
 }
 ```
-### 1.3 Task list
-매일 할 일..
 
-- [ ] 영어듣기
-- [ ] 알고리즘 문제 풀기
-
-### 1.4 인용문
+### 1.3 인용문
 
 아래와 같이 인용문을 사용할 수 있다.
 
 > *"C is quirky, flawed, and an enormous success.” - Dennis M.Ritchie*
 
-### 1.5 테이블
+### 1.4 테이블
 
 | 월, 수 | 화, 목 | 금, 토, 일 |
 | :--: | :--: | :-----: |
@@ -66,11 +60,8 @@ int main()
 |  영어  |  영어  |   영어    |
 
 
-### (2) Mathjax 테스트
+## (2) Mathjax 테스트
 
 인라인은 이렇게 $$O(n^2)$$ 작성하고, 블럭은 아래와 같이 작성하면 된다.
 
 $$ ax^2+bx+c=0 $$
-
-
-

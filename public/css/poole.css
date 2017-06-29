@@ -602,3 +602,21 @@ a.pagination-item:hover {
 .googleplus-share {
     color: #E53935;
 }
+
+ /**
+ * TOC
+ */
+
+ul {
+  list-style: inherit;
+}
+
+#markdown-toc:before {
+  content: "목 차";
+  font-weight: bold;
+}
+
+#markdown-toc {
+  list-style-type: none;
+  padding: 5px;
+}
