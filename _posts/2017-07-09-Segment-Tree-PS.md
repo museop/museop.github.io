@@ -203,5 +203,6 @@ m+n개 원소의 구간 합을 저장하는 구간 합 트리를 만든다. 그�
 
 - 알고리즘 문제 해결 전략, 구종만
 - Competive Programming 3, Steven Halim
-- https://www.acmicpc.net/blog/view/9
-- https://www.acmicpc.net/blog/view/26
+- [https://www.acmicpc.net/blog/view/9](https://www.acmicpc.net/blog/view/9)
+- [https://www.acmicpc.net/blog/view/26](https://www.acmicpc.net/blog/view/26)
+
