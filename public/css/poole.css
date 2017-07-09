@@ -169,7 +169,7 @@ abbr[title] {
 /* Code */
 
 code, pre {
-  font-family: "Source Code Pro", Monaco, Consolas, "Courier New", monospace;
+  font-family: Consolas, "Source Code Pro", Monaco, "Courier New", monospace;
 }
 
 code {
