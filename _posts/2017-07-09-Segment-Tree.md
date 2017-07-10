@@ -31,43 +31,45 @@ tag: [segment tree]
 구간 합 트리는 아래와 같이 구현할 수 있다. 구간 최대, 최소 트리도 원리는 같기 때문에 구현하기 어렵지 않다.
 
 ```c++
-const int NINF = numeric_limits<int>::min();
-
 struct SegmentTree {
-    vector<int> tree;
-    SegmentTree(const vector<int>& arr) : { // arr: init values
-        int n = arr.size();
-        if (n == 0) return;
-        tree.assign(n * 4, 0);
-        build(arr, 1, 0, n - 1);
+  vector<int> tree;
+
+  SegmentTree(vector<int>& arr) {
+    //assert(!arr.empty());
+    tree.assign(arr.size() * 4, 0);
+    build(arr, 1, 0, arr.size() - 1);
+  }
+
+  void build(vector<int>& arr, int id, int l, int r) {
+    if (l == r) {
+      tree[id] = arr[l];
+      return;
     }
-    build(vector<int>& arr, int node, int left, int right) {
-        if (left == right) return tree[node] = arr[left];
-        int mid = (left + right) / 2;
-        build(node<<1, left, mid);
-        build((node<<1)+1, mid+1, right);
-        return tree[node] = max(tree[node<<1], tree[(node<<1)+1]);
+    int m = (l + r) / 2;
+    build(arr, id*2, l, m);
+    build(arr, id*2+1, m+1, r);
+    tree[id] = tree[id*2] + tree[id*2+1];
+  }
+
+  void update(int pos, int diff, int id, int l, int r) {
+    if (pos < l || pos > r) return;
+    if (l == r) {
+      tree[id] += diff;
+      return;
     }
-    // update arr[pos] = value;
-    void update(int pos, int value, int node, int left, int right) {
-        if (pos < left || pos > right) return;
-        if (left == right) {
-            tree[node] = value;
-            return; 
-        }
-        int mid = (left + right) / 2;
-        update(pos, value, node<<1, left, mid);
-        update(pos, value, (node<<1)+1, mid+1, right);
-        tree[node] = max(tree[node<<1], tree[(node<<1)+1]);
-    }
-    // get max arr[qleft..qright]
-    int query(int qleft, int qright, int node, int left, int right) {
-        if (qleft > right || qright < left) return NINF;
-        if (qleft <= left && right <= qright) return tree[node];
-        int mid = (left + right) / 2;
-        return max(query(qleft, qright, node<<1, left, mid),
-                   query(qleft, qright, (node<<1)+1, mid+1, right));
-    }
+    int m = (l + r) / 2;
+    update(pos, diff, id*2, l, m);
+    update(pos, diff, id*2+1, m+1, r);
+    tree[id] = tree[id*2] + tree[id*2+1];
+  }
+
+  int query(int ql, int qr, int id, int l, int r) {
+    if (ql > r || qr < l) return 0;
+    if (ql <= l && r <= qr) return tree[id];
+    int m = (l + r) / 2;
+    return query(ql, qr, id*2, l, m)
+         + query(ql, qr, id*2+1, m+1, r);
+  }
 };
 ```
 
@@ -85,58 +87,62 @@ struct SegmentTree {
 
 ```c++
 struct SegmentTreeLazyPropagation {
-    vector<int> tree, lazy;
-    SegmentTreeLazyPropagation(const vector<int>& arr) {
-        int n = arr.size();
-        if (n == 0) return;
-        tree.assign(n * 4, 0);
-        lazy.assign(n * 4, 0);
-        build(arr, 1, 0, n - 1);
+  vector<int> tree, lazy;
+
+  SegmentTreeLazyPropagation(const vector<int>& arr) {
+    //assert(!arr.empty());
+    tree.assign(arr.size() * 4, 0);
+    lazy.assign(arr.size() * 4, 0);
+    build(arr, 1, 0, arr.size() - 1);
+  }
+
+  void build(const vector<int>& arr, int id, int l, int r) {
+    if (l == r) {
+      tree[id] = arr[l];
+      return;
     }
-    void build(const vector<int>& arr, int node, int left, int right) {
-        if (left == right) {
-            tree[node] = arr[left];
-            return;
-        }
-        int mid = (left + right) / 2;
-        build(arr, node<<1, left, mid);
-        build(arr, (node<<1)+1, mid+1, right);
-        tree[node] = tree[node<<1] + tree[(node<<1)+1];
+    int m = (l + r) / 2;
+    build(arr, id*2, l, m);
+    build(arr, id*2+1, m+1, r);
+    tree[id] = tree[id*2] + tree[id*2+1];
+  }
+
+  void update_lazy(int id, int l, int r) {
+    if (lazy[id] != 0) {
+      tree[id] += (r - l + 1) * lazy[id];
+      if (l != r) {
+        lazy[id*2] += lazy[id];
+        lazy[id*2+1] += lazy[id];
+      }
+      lazy[id] = 0;
     }
-    void update_lazy(int node, int left, int right) {
-        if (lazy[node] != 0) {
-            tree[node] += (right - left + 1) * lazy[node];
-            if (left != right) {
-                lazy[node<<1] += lazy[node];
-                lazy[(node<<1)+1] += lazy[node];
-            }
-            lazy[node] = 0;
-        }
+  }
+
+  void update_range(int ul, int ur, int diff, int id, int l, int r) {
+    update_lazy(id, l, r);
+    if (ul > r || ur < l) return;
+    if (ul <= l && r <= ur) {
+      tree[id] += (r - l + 1) * diff;
+      if (l != r) {
+        lazy[id*2] += diff;
+        lazy[id*2+1] += diff;
+      }
+      return;
     }
-    void update_range(int uleft, int uright, int diff, int node, int left, int right) {
-        update_lazy(node, left, right);
-        if (uleft > right || uright < left) return;
-        if (uleft <= left && right <= uright) {
-            tree[node] += (right - left + 1) * diff;
-            if (left != right) {
-                lazy[node<<1] += diff;
-                lazy[(node<<1)+1] += diff;
-            }
-            return;
-        }
-        int mid = (left + right) / 2;
-        update_range(uleft, uright, diff, node<<1, left, mid);
-        update_range(uleft, uright, diff, (node<<1)+1, mid+1, right);
-        tree[node] = tree[node<<1] + tree[(node<<1)+1];
-    }
-    int query(int qleft, int qright, int node, int left, int right) {
-        update_lazy(node, left, right);
-        if (qleft > right || qright < left) return 0;
-        if (qleft <= left && right <= qright) return tree[node];
-        int mid = (left + right) / 2;
-        return query(qleft, qright, node<<1, left, mid)
-             + query(qleft, qright, (node<<1)+1, mid+1, right);
-    }
+    int m = (l + r) / 2;
+    update_range(ul, ur, diff, id*2, l, m);
+    update_range(ul, ur, diff, id*2+1, m+1, r);
+    tree[id] = tree[id*2] + tree[id*2+1];
+  }
+
+  int query(int ql, int qr, int id, int l, int r) {
+    update_lazy(id, l, r);
+    if (ql > r || qr < l) return 0;
+    if (ql <= l && r <= qr) return tree[id];
+    int m = (l + r) / 2;
+    return query(ql, qr, id*2, l, m)
+         + query(ql, qr, id*2+1, m+1, r);
+  }
 };
 ```
 
