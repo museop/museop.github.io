@@ -316,6 +316,7 @@ a.sidebar-nav-item:focus {
 .page-title,
 .post-title,
 .post-title a {
+  /* font-size: 130%; */
   color: #303030;
 }
 .page-title,

@@ -1,13 +1,14 @@
 ---
 layout: post
 title: 네트워크 유량 (Network Flow)
-category: algorithm
-tag: [network flow]
+comments: true
+category: problem solving
+tag: [network flow, bipartite matching]
 ---
 * list element with functor item
 {:toc}
 
-## (1) 네트워크 유량 (Network Flow)
+## (1) 최대 유량 (MaximumFlow)
 ### 1.1 유량 네트워크 (Flow Network)
 
 유량 네트워크란 각 간선에 용량(capacity)이라는 속성이 존재하는 방향 그래프를 말한다. 이 유량 네트워크는 다음과 같은 요소들을 가진다.
@@ -19,7 +20,7 @@ tag: [network flow]
 - **잔여용량 (residual capacity)**: '용량 - 유량', 간선에 흘릴 수 있는 유량의 양
 
 
-### 1.2 최대 유량 (Max-Flow)
+### 1.2 최대 유량 (MaximumFlow Flow)
 
 이러한 유량 네트워크에서 소스(source)에서 싱크(sink)로 얼마나 많은 유량(flow)을 보낼 수 있는지, 즉 **최대 유량**을 계산하는 문제를 **네트워크 유량 문제**라고 한다. 예를 들어, 아래 그림과 같이 여러 컴퓨터들이 각기 다른 대역폭을 가진 케이블들로 연결된 네트워크에서 컴퓨터 s에서 t로 데이터를 보낼 때, 1초간 보낼 수 있는 최대 데이터 양을 구하는 문제가 대표적인 네트워크 유량 문제다.
 
@@ -250,3 +251,84 @@ int dinic(int src, int sink) {
 ![bipartite-matching2]({{ site.url }}/assets/bipartite-mathcing2.png)
 
 <br>
+
+### 2.4 구현
+
+이분 매칭을 풀기 위해 이분 그래프에 소스와 싱크를 연결하여 유량 네트워크를 만든 후, 포드-풀커슨 알고리즘으로 구현할 수도 있지만, 이분매칭은 보다 단순한 형태이기 때문에 보다 간결하게 코드를 작성할 수 있다.
+
+``` c++
+int V;
+vector<int> adj[MAX_V];
+int match[MAX_V];
+bool used[MAX_V];
+
+bool dfs(int a) {
+  if (used[a]) return false;
+  used[v] = true;
+  for (int b : adj[a]) {
+    if (match[b] < 0 || dfs(match[b])) {
+      match[b] = a;
+      match[a] = b;
+      return true;
+    }
+  }
+  return false;
+}
+int bipartite_matching() {
+  int matching = 0;
+  memset(match, -1, sizeof(match));
+  for (int a = 0; a < V; a++) {
+    memset(used, false, sizeof(used));
+    if (dfs(a)) {
+      ++matching;
+    }
+  }
+  return matching
+}
+```
+
+
+
+### 2.5 최대 독립 집합, 최소 정점 덮개
+
+그래프의 독립 집합(independent set)이란 정점 집합 V에서 서로 인접하지 않는 정점 집합 I ($$\subseteq$$ V)을 의미한다. 특히 정점의 수가 최대인 독립 집합을 최대 독립 집합(maximum indentpent set)이라고 한다.
+
+그래프의 정점 덮개(vertex cover)는 정점 집합 V에서 모든 간선을 커버하는 정점 집합 S ($$\subseteq$$ V)을 의미한다(보다 자세하게는 그래프의 모든 간선에 대해 각 간선 (u, v) $$\in$$ E의 끝 정점 u, v 중 적어도 하나를 포함하는 정점 집합을 의미한다). 이 중 최소 정점 수를 가진 집합을 최소 정점 덮개(minumum vertex cover)라 부른다. 유사하게 간선 덮개(edge cover)는 정점 집합 E에서 모든 정점을 커버하는 간선 집합 F ($$\subseteq$$ E)이고, 그 중 최소의 간선 수를 가진 집합을 최소 간선 덮개라 한다.
+
+위의 용어들과 관련해서 다음 사실들을 알아두면 여러 문제들을 이분 매칭으로 해결할 수 있다.
+
+1. 연결된 그래프 $$G=(V, E)$$에서 `|최대 독립 집합| + |최소 정점 덮개| = |V|`  이다.
+2. 연결된 그래프  $$G=(V, E)$$에서 `|최대 매칭| + |최소 간선 덮개| = |V|`  이다.
+3. 이분 그래프에서 `|최대 매칭| = |최소 정점 덮개|` 이다.
+
+
+
+
+### 2.6 예제
+
+#### BOJ 9576 책 나눠주기 ([문제 보기](https://www.acmicpc.net/problem/9576))
+
+#### BOJ 11376 열혈강호 2 ([문제 보기](https://www.acmicpc.net/problem/11376))
+
+#### BOJ 11377 열혈강호 3 ([문제 보기](https://www.acmicpc.net/problem/11377))
+
+#### BOJ 1017 소수 쌍 ([문제 보기](https://www.acmicpc.net/problem/1017)) 
+
+#### BOJ 1014 컨닝 ([문제 보기](https://www.acmicpc.net/problem/1014))
+
+#### BOJ 2570 비숍2 ([문제 보기](https://www.acmicpc.net/problem/2570))
+
+#### BOJ 9577 토렌트 ([문제 보기](https://www.acmicpc.net/problem/9577))
+
+
+
+## (3) 최소 비용 최대 유량 (Minimum Cost Maximum Flow)
+
+## (4) 참고 자료
+
+- 프로그래밍 대회에서 배우는 알고리즘 문제해결전략, 구종만
+- 프로그래밍 콘테스트 챌린징, Takuya Akiba, Yoichi Iwata, Mastoshi Kitagawa
+- Competive Programming 3, Steven Halim
+- http://blog.naver.com/PostView.nhn?blogId=kks227&logNo=220804885235
+- http://koosaga.com/18
+- http://koosaga.com/133

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 구간 트리(Segment Tree)
-category: algorithm
+comments: true
+category: problem solving
 tag: [segment tree]
 ---
 * list element with functor item
@@ -206,15 +207,9 @@ struct SegmentTreeLazyPropagation {
 
 
 
-## (3) 심화
+## (3) 참고 자료
 
-구간 트리의 각 노드는 특정 구간을 대표한다. 위에서 보았던 기본적인 구간 트리에서는 단순히 합, 최댓값, 최솟값만을 노드에 담았다. (추가 예정)
-
-
-
-## (4) 참고 자료
-
-- 알고리즘 문제 해결 전략, 구종만
+- 프로그래밍 대회에서 배우는 알고리즘 문제해결전략, 구종만
 - Competive Programming 3, Steven Halim
 - [https://www.acmicpc.net/blog/view/9](https://www.acmicpc.net/blog/view/9)
 - [https://www.acmicpc.net/blog/view/26](https://www.acmicpc.net/blog/view/26)

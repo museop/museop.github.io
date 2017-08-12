@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 그래프 알고리즘 - 그래프 탐색 (Graph Search)
-category: algorithm
+category: problem solving
 tag: [graph search]
 ---
 * list element with functor item

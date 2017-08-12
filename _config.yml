@@ -23,3 +23,6 @@ paginate_path: "page:num"
 markdown: kramdown
 
 math: true
+
+disqus_shortname: museop
+
