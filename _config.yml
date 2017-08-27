@@ -1,12 +1,12 @@
 
 
 # Setup
-title:               Welcome To Museop's Blog~!
+title:               Pleasure of learning
 tagline:             ''
 description:         'This Blog is using my study.'
 url:                 http://museop.github.io
 baseurl:             ''
-paginate:            5
+paginate:            4
 
 # About/contact
 author:
@@ -15,7 +15,7 @@ author:
   email:             kms920806@naver.com
 
 # Custom vars
-version:             1.0.0
+version:             1.0.1
 
 gems: [jekyll-paginate]
 paginate_path: "page:num"

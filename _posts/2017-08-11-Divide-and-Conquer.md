@@ -8,10 +8,11 @@ tag: [divide and conquer]
 
 * list element with functor item
 {:toc}
+# (1) 개념
 
-## (1) 분할 정복 (Divide and Conquer)
 
-### 1.1 분할 정복이란?
+
+## 분할 정복이란?
 
 분할 정복은 문제를 재귀적으로 둘 이상의 보다 작은 부분 문제로 나눈 뒤, 부분 문제들의 답을 결합하여 문제를 해결하는 방식을 말한다. 분할 정복을 사용하는 알고리즘들은 보통 다음 세 가지 단계를 갖는다.
 
@@ -21,30 +22,36 @@ tag: [divide and conquer]
 
 분할 정복은 큰 문제를 한 번에 해결하기 어려울 때, 문제 풀이를 단순화하기 위해 많이 사용된다. 더욱이 큰 문제를 비슷한 크기의 부분 문제로 자연스럽게 나눈 뒤, 부분 문제들의 답을 효율적으로 원래 문제의 답으로 결합할 수 있다면 문제를 빠르게 해결할 수 있다.
 
-### 1.2 대표적인 분할 정복 알고리즘
 
-분할 정복 전략을 취하는 많은 자료구조 및 알고리즘들이 존재한다. 예를 들면 다음과 같은 것들이다.
 
-#### 자료 구조
+## 대표적인 분할 정복 사용 예
 
-- 이진 탐색 트리 (Binary Search Tree)
-- 힙 (Heap)
-- 구간 트리 (Segment Tree)
-- 펜윅 트리 (Fenwick Tree = Binary Indexed Tree)
+분할 정복 전략을 취하는 많은 자료구조 및 알고리즘들이 존재한다. 비교적 유명한 것들은 다음과 같다.
 
-#### 알고리즘
+### 자료 구조
 
-- 이분 탐색 (Binary Search)
-- 합병 정렬 (Merge sort)
-- 퀵 정렬 (Quick Sort)
-- 빠른 거듭 제곱 (Fast Pow)
-- 스트라센의 행렬 곱셈 (Strassen's Matrix Multiplication)
-- 가장 가까운 두 점 구하기 (Closest Pair of Points)
-- 카라츠바의 빠른 곱셈 알고리즘 (Karatsuba algorithm for Fast Multiplication)
-- 역전의 수 세기 (Count Inversions)
-- 볼록 껍질 찾기 (Find Convex Hull)
+#### 이진 탐색 트리 (Binary Search Tree)
 
-### 1.3 예제
+#### 힙 (Heap)
+
+#### 구간 트리 (Segment Tree)
+#### 펜윅 트리 (Fenwick Tree = Binary Indexed Tree)
+
+### 알고리즘
+
+#### 이분 탐색 (Binary Search)
+#### 합병 정렬 (Merge Sort)
+#### 퀵 정렬 (Quick Sort)
+#### 빠른 거듭 제곱 (Fast Pow)
+#### 스트라센의 행렬 곱셈 (Strassen's Matrix Multiplication)
+#### 가장 가까운 두 점 구하기 (Closest Pair of Points)
+#### 카라츠바의 빠른 곱셈 알고리즘 (Karatsuba algorithm for Fast Multiplication)
+#### 역전의 수 세기 (Count Inversions)
+#### 볼록 껍질 찾기 (Find Convex Hull)
+
+<br>
+
+# (2) 문제
 
 #### BOJ 1992 쿼드 트리 ([문제 보기](https://www.acmicpc.net/problem/1992))
 
@@ -69,3 +76,11 @@ $$ a^b =\begin{cases}a^{b/2} \times a^{b/2} & \text{ if } b: even \\ a^{b-1} \ti
 #### BOJ 1517 버블 소트 ([문제 보기](https://www.acmicpc.net/problem/1517))
 
 역전의 수를 세는 문제다. 역전의 수는 합병 정렬(merge sort)을 하는 과정(병합 과정에서)에서 찾을 수 있다. 또는 펜윅 트리를 이용해도 풀 수 있다. (구간 트리는 메모리 초과)
+
+
+
+# (3) 참고 자료
+
+- 프로그래밍 대회에서 배우는 알고리즘 문제 해결 전략, 구종만
+- Competive Programming 3, Steven Halim
+- http://www.geeksforgeeks.org/divide-and-conquer/
