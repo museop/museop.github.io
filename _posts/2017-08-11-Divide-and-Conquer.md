@@ -30,24 +30,24 @@ tag: [algorithm paradigm, divide and conquer]
 
 ### 자료 구조
 
-#### 이진 탐색 트리 (Binary Search Tree)
+#### 이진 탐색 트리(Binary Search Tree)
 
-#### 힙 (Heap)
+#### 힙(Heap)
 
-#### 구간 트리 (Segment Tree)
-#### 펜윅 트리 (Fenwick Tree = Binary Indexed Tree)
+#### 구간 트리(Segment Tree)
+#### 펜윅 트리(Fenwick Tree = Binary Indexed Tree)
 
 ### 알고리즘
 
-#### 이분 탐색 (Binary Search)
-#### 합병 정렬 (Merge Sort)
-#### 퀵 정렬 (Quick Sort)
-#### 빠른 거듭 제곱 (Fast Pow)
-#### 스트라센의 행렬 곱셈 (Strassen's Matrix Multiplication)
-#### 가장 가까운 두 점 구하기 (Closest Pair of Points)
-#### 카라츠바의 빠른 곱셈 알고리즘 (Karatsuba algorithm for Fast Multiplication)
-#### 역전의 수 세기 (Count Inversions)
-#### 볼록 껍질 찾기 (Find Convex Hull)
+#### 이분 탐색(Binary Search)
+#### 합병 정렬(Merge Sort)
+#### 퀵 정렬(Quick Sort)
+#### 빠른 거듭 제곱(Fast Pow)
+#### 스트라센의 행렬 곱셈(Strassen's Matrix Multiplication)
+#### 가장 가까운 두 점 구하기(Closest Pair of Points)
+#### 카라츠바의 빠른 곱셈 알고리즘(Karatsuba algorithm for Fast Multiplication)
+#### 역전의 수 세기(Count Inversions)
+#### 볼록 껍질 찾기(Find Convex Hull)
 
 <br>
 

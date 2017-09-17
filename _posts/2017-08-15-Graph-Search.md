@@ -9,7 +9,7 @@ tag: [graph, graph search]
 {:toc}
 # (1) 개념
 
-## 깊이 우선 탐색 (Depth First Search, DFS)
+## 깊이 우선 탐색(Depth First Search, DFS)
 
 그래프의 모든 정점을 탐색하는 방법중 하나인 깊이 우선 탐색(이하 DFS)은 시작 정점부터 방문하여 현재 방문중인 정점 u에서 아직 방문하지 않은 정점 v로 향하는 간선이 존재한다면  그 간선을 타고 정점 v를 방문한다. 이 과정에서 더 이상 갈 곳이 없는 정점에 도달하면, 이 정점 이전에 마지막으로 방문했던 정점으로 돌아가 이와 같은 과정을 반복하는 탐색 알고리즘이다. 시간복잡도는 $$O(V+E)$$이다.
 
@@ -28,7 +28,7 @@ void dfs(int u) {
 }
 ```
 
-## 너비 우선 탐색 (Breadth First Search, BFS)
+## 너비 우선 탐색(Breadth First Search, BFS)
 
 또다른 그래프 탐색 방법중 하나인 너비 우선 탐색(이하 BFS)은 시작 정점에서부터 거리가 가까운 정점들부터 방문해나간다. BFS는 보통 그래프에서 최단 경로 문제를 풀때 많이 사용된다. 시간복잡도는 $$O(V+E)$$이다.
 
@@ -55,7 +55,7 @@ void bfs(int source) {
 }
 ```
 
-## 컴포넌트 찾기 (Finding Components)
+## 컴포넌트(Components) 찾기
 
 그래프에서 컴포넌트(connected component)란 다음 두 가지 특성을 만족하는 정점의 부분 집합이다.
 
@@ -88,7 +88,7 @@ void find_connected_components() {
 }
 ```
 
-## 위상 정렬 (Topological Sort)
+## 위상 정렬(Topological Sort)
 
 위상 정렬은 방향 그래프의 정점들을 정점들 사이의 간선 방향을 거스르지 않도록 나열하는 것으로 의존성이 있는 작업들을 목록이 있을 때, 어떤 순서로 작업을 해야 하는지 계산하는데 사용한다.
 
@@ -121,7 +121,7 @@ void topological_sort() {
 }
 ```
 
-## 이분 그래프 검사하기 (Bipartite Graph Checking) 
+## 이분 그래프 검사하기(Bipartite Graph Checking) 
 
 이분 그래프란 다음 두 가지 특성을 만족하는 특수 그래프를 말한다.
 
@@ -157,7 +157,7 @@ bool is_bipartite() {
 
 
 
-## 사이클 찾기 (Cycle Detection)
+## 사이클 찾기(Cycle Detection)
 
 추가 예정...
 
@@ -168,7 +168,15 @@ bool is_bipartite() {
 
 
 
-## DFS 스패닝 트리 (DFS Spanning Tree)
+
+## 오일러 서킷(Eulerian Circuit) 찾기
+
+추가 예정...
+
+
+
+
+## DFS 스패닝 트리(DFS Spanning Tree)
 
 그래프의 단절점, 단절선, 강결합 컴포넌트를 찾는 알고리즘등과 같이 DFS를 응용하여 문제를 해결하려고 할 때, 알아두면 도움이 되는 개념이 있다. DFS 스패닝 트리와 그에 따른 간선 분류다. 어떤 연결된 그래프에 DFS를 수행할 때 탐색이 따라가는 간선들을 모아보면 트리 형태를 이루는 것을 알 수 있다. 이를 DFS 스패닝 트리라고 하는데 이러한 DFS 스패닝 트리를 생성하고 나면 그래프의 모든 간선을 다음과 같이 네 가지 중 하나로 분류할 수 있다.
 
@@ -213,7 +221,7 @@ void dfs_spanning_tree(int u) { // in directed graph
 }
 ```
 
-## 단절점 (Articulation Points, Cut Vertices) 찾기
+## 단절점(Articulation Points, Cut Vertices) 찾기
 
 무방향 그래프에서 정점 u와 u와 연결된 간선들을 지웠을 때,  u가 속해있는 컴포넌트가 두 개 이상으로 나뉘어질 때, 이 정점 u를 단절점(Cur Vertex 또는 Articulation Point)라고 한다. 이러한 단절점을 찾는 가장 간단한 방법은 어떤 정점을 지운 후, 컴포넌트의 개수가 증가했는지 확인하는 것으로 총 $$V$$번의 DFS를 수행 되지만, DFS 스패닝 트리를 관찰하면 보다 효율적으로 단절점을 찾을 수 있다. 임의의 정점으로부터  DFS를 수행하여 얻은 DFS 스패닝 트리가 아래와 같다고 하자.
 
@@ -254,7 +262,7 @@ void find_cut_vertices(int u, int parent = -1, bool root = true) {
 }
 ```
 
-## 단절선 (Bridges) 찾기
+## 단절선(Bridges) 찾기
 
 단절점과 유사하게 제거했을 때 컴포넌트의 개수를 증가시키는 간선을 단절점 또는 다리(bridge)라고 부른다. 이 단절선 역시 단절점을 구하는 것과 유사하게 구할 수 있다. DFS 중 현재 정점이 $$u$$이고, $$u$$와 인접한 정점이자 DFS 스패닝 트리상의 자식 정점인 $$v$$와의 간선 $$(u, v)$$이 단절선이 될 수 있는 경우를 고려해보자. DFS 스패닝 트리상 $$v$$를 루트로 하는 서브 트리가 생성될 것이다. 이 서브 트리에서 $$(u, v)$$를 제외한 간선을 통해 정점 $$v$$의 조상 노드로 향하는 역방향 간선이 존재하지 않으면, 간선 $$(u, v)$$를 지웠을 때 이 서브 트리는 분리된다. 따라서 이러한 간선 $$(u, v)$$가 단절선이 된다. 구현 코드는 단절점 코드와 상당히 유사하다.
 
@@ -279,7 +287,7 @@ void find_bridges(int u, int parent = -1) {
 }
 ```
 
-##  강결합 컴포넌트 (Strongly Connected Components) 찾기
+##  강결합 컴포넌트(Strongly Connected Components) 찾기
 
 방향 그래프에서 정의되는 개념중에 강결합 요소가 있다. 다음 조건들을 만족하는 정점들의 집합을 강결합 컴포넌트(Strongly Connected Components, 줄여서 SCC)라고 부른다.
 
@@ -292,7 +300,7 @@ void find_bridges(int u, int parent = -1) {
 방향 그래프에서 각각의 강결합 컴포넌트를 구분하는 대표적인 알고리즘으로는 타잔 알고리즘과 코사라주 알고리즘이 있다.
 
 
-### 타잔 알고리즘 (Targan algorithm)
+### 타잔 알고리즘(Targan algorithm)
 
 타잔 알고리즘은 DFS를 통해 생성되는 DFS 스패닝 트리와 그에 따른 간선 분류를 통해서 방향 그래프의 SCC를 구한다. 방향 그래프의 DFS 스패닝 트리를 관찰해보면 알 수 있는 사실이 몇 가지 있다. 모든 SCC에 대해 SCC의 한 정점을 루트로 하고, SCC를 이루는 정점들은 모두 포함하는 서브 트리가 DFS 스패닝 트리에 존재한다는 것이다. 이를 만족하지 않는 정점이 있다고 가정하면 금방 모순이 된다는 것을 확인할 수 있다. 
 
@@ -382,6 +390,10 @@ int kosaraju_scc() {
   return id;
 }
 ```
+
+### 2-SAT 문제
+
+추가 예정...
 
 
 
