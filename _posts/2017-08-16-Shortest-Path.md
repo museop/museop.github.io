@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 최단 경로 (Shortest Path)
+title: 최단 경로(Shortest Path)
 comments: true
 category: problem solving
 tag: [graph, shortest path]
@@ -132,6 +132,16 @@ vector<int> spfa(int src) {
 
 
 
+### 0-1 BFS
+
+그래프의 가중치가 0 또는 1인 경우에 대해서 생각해보자. 이 경우 다익스트라 알고리즘을 사용하면 $$O(E\space log_2V)$$에 해결할 수 있다. 하지만 자료 구조 덱 (deque)를 이용하면 $$O(V+E)$$만에 문제를 해결할 수 있다. 현재 정점 $$u$$를 방문중일 때, 인접한 정점 $$v$$로 가는 간선의 가중치가 0이라면  $$v$$를 덱에 앞에다 넣고, 1이라면 뒤에다 넣으면 된다. 조금 정리를 해보면 단일 시작점 최단 경로를 구할 때, 간선의 가중치에 따라 사용하는 자료 구조는 다음과 같다.
+
+- 모든 간선의 가중치가 0: 큐 (queue)
+- 모든 간선의 가중치가 0 또는 1: 덱 (deque)
+- 간선의 가중치가 제각각: 우선순위 큐 (priority queue)
+
+
+
 ## 모든 쌍 최단 경로
 
 그래프의 임의의 두 정점쌍에 대한 최단 경로를 모두 구하고자 할 때는 다익스트라나 벨만 포드 알고리즘을 $$V$$번 수행하여 구할 수도 있지만, 플로이드-워셜이라는 보다 효율적인 알고리즘을 사용할 수 있다.
@@ -171,7 +181,7 @@ void floyd() {
 
 <br>
 
-# (2) 문제
+# (2) 연습 문제
 
 #### BOJ 1916 최소비용 구하기 ([문제 보기](https://www.acmicpc.net/problem/1916))
 
@@ -199,3 +209,4 @@ void floyd() {
 
 - 프로그래밍 대회에서 배우는 알고리즘 문제해결전략, 구종만
 - Competive Programming 3, Steven Halim
+- http://codeforces.com/blog/entry/22276

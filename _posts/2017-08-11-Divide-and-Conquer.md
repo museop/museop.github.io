@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 분할 정복 (Divide and conquer)
+title: 분할 정복(Divide and Conquer)
 comments: true
 category: problem solving
-tag: [divide and conquer]
+tag: [algorithm paradigm, divide and conquer]
 ---
 
 * list element with functor item
@@ -51,7 +51,7 @@ tag: [divide and conquer]
 
 <br>
 
-# (2) 문제
+# (2) 연습 문제
 
 #### BOJ 1992 쿼드 트리 ([문제 보기](https://www.acmicpc.net/problem/1992))
 

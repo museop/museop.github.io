@@ -3,7 +3,7 @@ layout: post
 title: 구간 트리(Segment Tree)
 comments: true
 category: problem solving
-tag: [segment tree]
+tag: [tree, segment tree]
 ---
 * list element with functor item
 {:toc}
@@ -145,9 +145,7 @@ struct SegmentTreeLazyPropagation {
 
 
 
-# (2) 문제
-
-구간 트리를 사용하는 문제는 최근에 많은 프로그래밍 대회에서 단골로 출제된다. 쉬운 문제부터 어려운 문제까지 난이도가 다양하다. 여러 예제들을 풀어보면서 어떤 식으로 구간 트리를 응용하여 사용할 수 있는지 감을 잡는 것이 좋다.
+# (2) 연습 문제
 
 ## RSQ
 
@@ -171,6 +169,23 @@ m+n개 원소의 구간 합을 저장하는 구간 합 트리를 만든다. 그�
 - **rcnt**: **cTree** 에 구간 [X[i]+1, MAX_X] 쿼리 결과, 즉 오른쪽에 심어져 있는 나무의 개수
 - **lsum**: **sTree** 에 구간 [0, X[i] - 1] 쿼리 결과, 즉 x = 0부터 왼쪽에 심어져 있는 나무들까지의 거리 총합
 - **rsum**: **sTree** 에 구간 [X[i]+1, MAX_X] 쿼리 결과, 즉 x = 0 부터 왼쪽에 심어져 있는 나무들까지의 거리 총합
+
+
+#### BOJ 1655 가운데를 말해요 ([문제 보기](https://www.acmicpc.net/problem/1655))
+
+특정 원소가 있으면 1로, 없으면 0으로 배열에 대응하는 구간 합 트리를 이용하면  k 번째 원소를 찾을 수 있다.
+
+``` c++
+int kth(int k, int id, int l, int r) {
+  if (l == r) return l;
+  int m = (l + r) / 2;
+  if (tree[id*2] >= k)
+    return kth(k, id*2, l, m);
+  else
+    return kth(k-tree[id*2], id*2+1, m+1, r);
+}
+```
+
 
 
 ## RMQ
@@ -197,17 +212,21 @@ m+n개 원소의 구간 합을 저장하는 구간 합 트리를 만든다. 그�
 
 L번 선반부터 R번 선반까지 L번 DVD부터 R번 DVD까지 모두 있는지는 구간 (L, R) 의 최솟값이 L이고, 구간 (L, R) 의 최댓값이 R 인지를 확인하면 알 수 있다.
 
-## k번째 원소 찾기
 
-#### BOJ 1655 가운데를 말해요 ([문제 보기](https://www.acmicpc.net/problem/1655))
-
-이진 트리는 빠른 탐색 속도를 가진 자료 구조로 k번째 원소를 찾는데도 사용할 수 있다. 이진 트리의 응용인 구간 트리 역시 이 작업을 수행할 수 있다. 특정 원소가 있으면 1로, 없으면 0으로 배열에 대응하는 구간 합 트리를 이용하면  k 번째 원소를 찾을 수 있다.
 
 ## Lazy propagation
 
 #### BOJ 2934 LRH 식물 ([문제 보기](https://www.acmicpc.net/problem/2934))
 
 먼저 가능한 모든 x 좌표로 구간 합 트리를 만든다. 매일 매일 나무를 심는 작업은  [L+1, R-1]  구간의 값을 모두 1로 만들면 되고, 꽃이 몇 개 피는지는 L 과 R 의 쿼리를 날려 얻을 수 있다. 꽃이 핀 부분은 다시 0으로 업데이트 해주면 된다. 구간 값 갱신을 $$O(log_2N)$$에 수행하는 Lazy propagation 구간 합 트리 구현이 필요한 문제이다.  또는 펜윅 트리를 사용하면 보다 쉽게 구현이 가능하다.
+
+#### BOJ 1395 스위치 ([문제 보기](https://www.acmicpc.net/problem/1395))
+
+#### BOJ 12844 XOR ([문제 보기](https://www.acmicpc.net/problem/12844))
+
+#### BOJ 7626 직사각형 ([문제 보기](https://www.acmicpc.net/problem/7626))
+
+
 
 <br>
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 그래프 탐색 (Graph Search)
+title: 그래프 탐색(Graph Search)
 comments: true
 category: problem solving
 tag: [graph, graph search]
@@ -154,6 +154,19 @@ bool is_bipartite() {
   return true;
 }
 ```
+
+
+
+## 사이클 찾기 (Cycle Detection)
+
+추가 예정...
+
+사이클과 관련된 그래프 특성
+
+- 모든 정점의 나가는 간선의 차수가 1인 경우, 각각의 컴포넌트들은 최대 1개의 cycle을 갖는다.
+- 무방향 그래프가 주어졌을 때, 이 그래프에 홀수 길이의 사이클이 존재하지 않는다는 말은 주어진 그래프가 이분 그래프라는 말과 동치다.
+
+
 
 ## DFS 스패닝 트리 (DFS Spanning Tree)
 
@@ -374,11 +387,7 @@ int kosaraju_scc() {
 
 <br>
 
-# (2) 문제
-
-#### BOJ 1707 이분 그래프 ([문제 보기](https://www.acmicpc.net/problem/1707))
-
-#### BOJ 10451 순열 사이클 ([문제 보기](https://www.acmicpc.net/problem/10451))
+# (2) 연습 문제
 
 #### BOJ 2331 반복수열 ([문제 보기](https://www.acmicpc.net/problem/2331))
 
@@ -388,29 +397,19 @@ int kosaraju_scc() {
 
 #### BOJ 9466 텀 프로젝트 ([문제 보기](https://www.acmicpc.net/problem/9466))
 
-#### BOJ 10216 Count Circle ([문제 보기](https://www.acmicpc.net/problem/10216))
-
-#### BOJ 2252 줄 세우기 ([문제 보기](https://www.acmicpc.net/problem/2252))
-
 #### BOJ 2617 구슬 찾기 ([문제 보기](https://www.acmicpc.net/problem/2617))
 
 #### BOJ 2178 미로 탐색 ([문제 보기](https://www.acmicpc.net/problem/2178))
 
-#### BOJ 7576 토마토 ([문제 보기](https://www.acmicpc.net/problem/7576))
-
 #### BOJ 13903 출근 ([문제 보기](https://www.acmicpc.net/problem/13903))
 
 #### BOJ 2146 다리 만들기 ([문제 보기](https://www.acmicpc.net/problem/2146))
-
-#### BOJ 2636 치즈 ([문제 보기](https://www.acmicpc.net/problem/2636))
 
 #### BOJ 1697 숨바꼭질 ([문제 보기](https://www.acmicpc.net/problem/1697))
 
 #### BOJ 12851 숨바꼭질 2 ([문제 보기](https://www.acmicpc.net/problem/12851))
 
 #### BOJ 2206 벽 부수고 이동하기 ([문제 보기](https://www.acmicpc.net/problem/2206))
-
-#### BOJ 11581 구호물자 ([문제 보기](https://www.acmicpc.net/problem/11581))
 
 #### BOJ 1734 교통 체계 ([문제 보기](https://www.acmicpc.net/problem/1734))
 

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 평면 스위핑 (Plane Sweeping)
+title: 정수론(Number theory)
 comments: true
 category: problem solving
-tag: [stack]
+tag: [number theory]
 ---
 * list element with functor item
 {:toc}

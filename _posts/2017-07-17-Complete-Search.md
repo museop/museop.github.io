@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 완전 탐색 (Complete Search)
+title: 완전 탐색(Complete Search)
 comments: true
 category: problem solving
-tag: [complete search]
+tag: [algorithm paradigm, complete search]
 ---
 * list element with functor item
 {:toc}
@@ -17,7 +17,7 @@ tag: [complete search]
 
 <br>
 
-# (2) 문제
+# (2) 연습 문제
 
 #### BOJ 2309 일곱 난쟁이 ([문제 보기](https://www.acmicpc.net/problem/2309))
 

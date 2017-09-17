@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 최소 스패닝 트리 (Minimum Spanning Tree)
+title: 최소 스패닝 트리(Minimum Spanning Tree)
 comments: true
 category: problem solving
-tag: [graph, minimum spanning tree]
+tag: [graph, minimum spanning tree, tree, kruskal algorithm, prim algorithm, disjoint set]
 ---
 * list element with functor item
 {:toc}
@@ -96,7 +96,7 @@ void prim() {
 
 <br>
 
-# (2) 문제
+# (2) 연습 문제
 
 #### BOJ 1922 네트워크 연결 ([문제 보기](https://www.acmicpc.net/problem/1922))
 

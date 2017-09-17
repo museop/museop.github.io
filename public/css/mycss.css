@@ -70,24 +70,6 @@
   text-decoration: none;
 }
 
-/**
-* Post-link in archive, category, tag
-*/
-.post-link {
-   list-style: none;
-}
-
-.post-link:before {
-  content: "\f101";
-  font-family: FontAwesome;
-  padding-right: .5em
-}
-
-.post-link:hover {
-  text-decoration: none;
-}
-
-
  /**
  * Share
  */
