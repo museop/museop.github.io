@@ -2,11 +2,12 @@
 layout: post
 title: 네트워크 유량(Network Flow)
 comments: true
-category: problem solving
+category: algorithm
 tag: [graph, network flow, bipartite matching]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 최대 유량(Maximum Flow)
@@ -27,7 +28,7 @@ tag: [graph, network flow, bipartite matching]
 
 <br>
 
-![network-flow1]({{ site.url }}/assets/network-flow1.png)
+![network-flow1]({{ site.url }}/assets/img/network-flow1.png)
 
 <br>
 
@@ -182,15 +183,15 @@ int dinic(int src, int sink) {
 
 <br>
 
-![network-flow2]({{ site.url }}/assets/network-flow2.png)
+![network-flow2]({{ site.url }}/assets/img/network-flow2.png)
 
 <br>
 
-![network-flow3]({{ site.url }}/assets/network-flow3.png)
+![network-flow3]({{ site.url }}/assets/img/network-flow3.png)
 
 <br>
 
-![network-flow4]({{ site.url }}/assets/network-flow4.png)
+![network-flow4]({{ site.url }}/assets/img/network-flow4.png)
 
 <br>
 
@@ -216,7 +217,7 @@ int dinic(int src, int sink) {
 
 <br>
 
-![bipartite-matching1]({{ site.url }}/assets/bipartite-mathcing1.png)
+![bipartite-matching1]({{ site.url }}/assets/img/bipartite-mathcing1.png)
 
 <br>
 
@@ -234,7 +235,7 @@ int dinic(int src, int sink) {
 
 <br>
 
-![bipartite-matching2]({{ site.url }}/assets/bipartite-mathcing2.png)
+![bipartite-matching2]({{ site.url }}/assets/img/bipartite-mathcing2.png)
 
 <br>
 

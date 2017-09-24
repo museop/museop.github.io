@@ -2,17 +2,18 @@
 layout: post
 title: 동적 계획법(Dynamic Programming)
 comments: true
-category: problem solving
+category: algorithm
 tag: [algorithm paradigm, dynamic programming]
 ---
 
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 동적 계획법이란?
 
-동적 계획법(dynamic programming)은 최적화 문제를 풀기 위해 고안된 기법으로 복잡한 문제를 보다 간단한 여러 개의 부분 문제로 나누어 푸는 방법으로 중요한 점은 한 번 계산한 부분 문제의 답을 저장해 두어 나중에 같은 부분 문제의 답을 이용할 때, 복잡한 연산 없이 바로 이용할 수 있도록 하는 것이 핵심이다. 주로 **중복되는 부분 문제(overlapping sub-problems)**와 **최적 부분 구조(optimal substructure)**를 가지고 있는 문제들을 풀때 사용된다. 보다 자세한 내용은 뒤에 후술한다.
+동적 계획법(dynamic programming)은 최적화 문제를 풀기 위해 고안된 기법으로 복잡한 문제를 보다 간단한 여러 개의 부분 문제로 나누어 해결한다. 중요한 점은 한 번 계산한 부분 문제의 답을 저장해 두어 나중에 같은 부분 문제의 답을 이용할 때, 복잡한 연산 없이 바로 이용할 수 있도록 하는 것이 핵심이다. 주로 **중복되는 부분 문제(overlapping sub-problems)**와 **최적 부분 구조(optimal substructure)**를 가지고 있는 문제들을 풀때 사용된다. 보다 자세한 내용은 뒤에 후술한다.
 
 동적 계획법을 이용한 알고리즘을 설계할 때 가장 중요한 것은 **현재 문제의 상태(state)**와 **현재 문제와 부분 문제간의 관계(relationship) 또는 전이(transitions)**를 파악하는 것이다. 문제들간의 관계 또는 전이를 정확하게 파악하면 알고리즘의 정당성을 얻을 수 있고, 동적 계획법 알고리즘의 시간복잡도는 상태의 수와 한 상태의 답을 결정짓기 위한 시간에 비례하므로 이를 잘 고려하여 문제간의 상태와 관계를 잘 파악하는 것이 중요하기 때문이다.
 
@@ -24,13 +25,13 @@ tag: [algorithm paradigm, dynamic programming]
 
 위 점화식을 토대로  $$\binom 4 2$$를 재귀적으로 구한다고 하면 아래 왼쪽 그림과 같이  $$\binom 2 1$$을 구하는 과정이 중복된다는 사실을 인지할 수 있다. 사람이 직접 계산할 때에는 문제가 중복됨을 바로 인지하여 한 번만 계산할 수도 있겠지만 컴퓨터는 그렇지 못한다. 아래 오른쪽 그림과 같이 중복되는 부분 문제를 단 한번만 계산하도록 하는 것이 동적 계획법의 핵심이다.
 
-![overlapping-subproblems]({{ site.url }}/assets/overlapping-subproblems.png)
+![overlapping-subproblems]({{ site.url }}/assets/img/overlapping-subproblems.png)
 
 ### 최적 부분 구조(Optimal substructure)
 
 동적 계획법을 최적화 문제 풀이에 적용하려면, 주어진 문제에 중복되는 부분 문제 말고도 최적 부분 구조 (optimal substructure)라는 특성이 필요하다. 어떤 문제가 최적 부분 구조를 가진다는 것은 주어진 문제의 최적해를 그 문제의 부분 문제들의 최적해를 통해 얻을 수 있다는 것을 말한다. 예를 들어 아래 그림과 같이 서울에서 부산으로 가는 최단 경로 문제를 보자.
 
-![optimal-substructure.png]({{ site.url }}/assets/optimal-substructure.png)
+![optimal-substructure.png]({{ site.url }}/assets/img/optimal-substructure.png)
 
 서울에서 부산으로 갈 때 반드시 대전을 지난다고 가정하면, 이 경로를 (서울 -> 대전)과 (대전 -> 부산)으로 나눌 수 있다. 그러면 두 구간의 최단 경로(각각 1km, 5km)를 찾아 둘을 이으면 항상 서울에서 부산으로 가는 최단 경로(6km)를 얻을 수 있게 된다. 이런 경우 전체 문제의 최적해(최단 거리)가 부분 문제들의 최적해를 통해 얻을 수 있으므로 최적 부분 구조를 가진다고 할 수 있다. 이러한 특성이 모든 최적화 문제에 성립하는 것은 아니다. 위의 문제에서 경로상에 통행료와 같은 다른 제약이 존재하고, 총 통행료 합이 얼마 이하여야만 한다는 특정 상황이 추가된다면 위에서 당연한 듯 보였던 최적 부분 구조는 성립하지 않게 된다. 따라서 동적 계획법을 최적화 문제 풀이에 적용하려면, 주어진 문제에 최적 부분 구조가 성립하는지를 잘 따져봐야 한다.
 
@@ -98,41 +99,19 @@ int fibo2(int n) {
 
 # (2) 연습 문제
 
-## 비슷한 문제들
-
-동적 계획법 문제는 그 유형을 모두 분류하기 어려울 정도로 많다. 그럼에도 불구하고 부족하지만 비교적  풀이가 비슷하다고 느껴지는 문제들끼리 분류해봤다.
-
-
-
-### 유형 1
-
-최장 부분 수열(LIS)
-
-#### BOJ 11054 가장 긴 바이토닉 수열 ([문제 보기](https://www.acmicpc.net/problem/11054))
-
 #### BOJ 2156 포도주 시식 ([문제 보기](https://www.acmicpc.net/problem/2156))
 
 
-
-### 유형 2
-
-최장 공통 부분 수열(LCS), 바이토닉 투어(Bitonic Tour), 투 포인터(Two Pointer)
-
-#### BOJ 1958 LCS 3 ([문제 보기](https://www.acmicpc.net/problem/1958))
 
 #### BOJ 2507 공주 구하기 ([문제 보기](https://www.acmicpc.net/problem/2507))
 
 #### BOJ 10272 현상금 사냥꾼 김정은 ([문제 보기](https://www.acmicpc.net/problem/10272))
 
-#### BOJ 11570 환상의 듀엣 ([문제 보기](https://www.acmicpc.net/workbook/view/386))
-
 #### BOJ 2618 경찰차 ([문제 보기](https://www.acmicpc.net/problem/2618))
 
+#### BOJ 9023 연습시즌 ([문제 보기](https://www.acmicpc.net/problem/9023))
 
 
-### 유형 3
-
-동전 교환 문제
 
 #### BOJ 2293 동전 1 ([문제 보기](https://www.acmicpc.net/problem/2293))
 
@@ -140,29 +119,17 @@ int fibo2(int n) {
 
 
 
-### 유형 4
-
-행렬 곱셈 순서
-
 #### BOJ 11049 행렬 곱셈 순서 ([문제 보기](https://www.acmicpc.net/problem/11049))
 
 #### BOJ 11066 파일 합치기 ([문제 보기](https://www.acmicpc.net/problem/11066))
 
 
 
-### 유형 5
-
-구간 합
-
 #### BOJ 1912 연속합 ([문제 보기](https://www.acmicpc.net/problem/1912))
 
 #### CF 835C Star sky ([문제 보기](http://codeforces.com/problemset/problem/835/C))
 
 
-
-### 유형 6
-
-트리 DP
 
 #### BOJ 1005 ACM Craft ([문제 보기](https://www.acmicpc.net/problem/1005))
 
@@ -172,21 +139,11 @@ int fibo2(int n) {
 
 
 
-### 미분류
-
 #### BOJ 2266 금고 테스트 ([문제 보기](https://www.acmicpc.net/problem/2266))
 
-
-
-## 유용한 DP 기법들
-
-동적 계획법을 이용하여 문제를 풀 때 많이 사용되는 여러 기법들이 존재한다. 감각적으로 응용하여 문제를 해결할 수도 있겠지만, 자주 사용되는 기법들은 어느 정도 틀을 잡아두면 구현하는데 있어 보다 간결하고 정확하게 작성할 수 있을 것이다.
-
-
+#### BOJ 13308 주유소 ([문제 보기](https://www.acmicpc.net/problem/13308))
 
 ### 최적해 구성하기
-
-#### BOJ 9252 LCS 2 ([문제 보기](https://www.acmicpc.net/problem/9252))
 
 #### BOJ 2662 기업 투자 ([문제 보기](https://www.acmicpc.net/problem/2662))
 

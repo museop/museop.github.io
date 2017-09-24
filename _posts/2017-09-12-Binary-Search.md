@@ -2,7 +2,7 @@
 layout: post
 title: 검색 알고리즘(Searching Algorithm)
 comments: true
-category: problem solving
+category: algorithm
 tag: [search, binary search, tree, binary search tree]
 ---
 * list element with functor item

@@ -2,11 +2,12 @@
 layout: post
 title: 완전 탐색(Complete Search)
 comments: true
-category: problem solving
+category: algorithm
 tag: [algorithm paradigm, complete search]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 완전 탐색이란?

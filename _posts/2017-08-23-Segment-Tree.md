@@ -2,11 +2,12 @@
 layout: post
 title: 구간 트리(Segment Tree)
 comments: true
-category: problem solving
+category: algorithm
 tag: [tree, segment tree]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 구간 트리란?
@@ -17,7 +18,7 @@ tag: [tree, segment tree]
 
 
 
-![segment-tree]({{ site.url }}/assets/segment-tree.png)
+![segment-tree]({{ site.url }}/assets/img/segment-tree.png)
 
 
 

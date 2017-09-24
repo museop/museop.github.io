@@ -2,12 +2,13 @@
 layout: post
 title: 분할 정복(Divide and Conquer)
 comments: true
-category: problem solving
+category: algorithm
 tag: [algorithm paradigm, divide and conquer]
 ---
 
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 

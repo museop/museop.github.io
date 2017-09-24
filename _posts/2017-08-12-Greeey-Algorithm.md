@@ -2,12 +2,13 @@
 layout: post
 title: 탐욕법(Greedy Method)
 comments: true
-category: problem solving
+category: algorithm
 tag: [algorithm paradigm, greedy]
 ---
 
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 탐욕법이란?

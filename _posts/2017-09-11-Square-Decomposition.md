@@ -2,11 +2,12 @@
 layout: post
 title: 평방 분할 기법(Square Root Decomposition)
 comments: true
-category: problem solving
+category: algorithm
 tag: [sqrt root decomposition]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## Square Root Decomposition
@@ -24,7 +25,7 @@ tag: [sqrt root decomposition]
 
 평방 분할 기법의 핵심 아이디어는 아래와 같이 크기 $$n$$의 배열을 크기 $$\sqrt n$$의 여러 블록으로 나누어 각 블록에 해당하는 구간 합을 미리 계산해두고, 구간 $$[l, r]$$의 합을 계산할 때 $$l$$과 $$r$$사이에 완전히 포함되어 있는 블록들에 해당하는 구간은 미리 계산해두었던 구간 합을 바로 사용하여 불필요한 중복 계산을 없애는 것이다.
 
-![square_root_docomposition]({{ site.url }}/assets/square_root_docomposition.png)
+![square_root_docomposition]({{ site.url }}/assets/img/square_root_docomposition.png)
 
 시간복잡도는 계산해보면 구간 합을 구하는 질의에 대해서 구간에 완전히 포함되는 블록에 해당하는 구간 합을 구하는데 $$O(\sqrt n)$$이 소요되고, 포함되지 않는 구간을 직접 순회하면서 계산하는데 $$O(2 \times \sqrt n)$$의 시간이 소요된다. 그리고 특정 위치 값을 갱신하는 작업의 경우 간단하게 배열 값과 해당하는 블록 값만 갱신해주면 되므로 상수 시간에 수행 가능하다. 따라서 총 $$q$$개의 질의에 대한 전체 시간복잡도는 $$O(q \times \sqrt n)$$이 된다.
 

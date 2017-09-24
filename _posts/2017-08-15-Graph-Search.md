@@ -2,11 +2,12 @@
 layout: post
 title: 그래프 탐색(Graph Search)
 comments: true
-category: problem solving
+category: algorithm
 tag: [graph, graph search]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 ## 깊이 우선 탐색(Depth First Search, DFS)
@@ -180,7 +181,7 @@ bool is_bipartite() {
 
 그래프의 단절점, 단절선, 강결합 컴포넌트를 찾는 알고리즘등과 같이 DFS를 응용하여 문제를 해결하려고 할 때, 알아두면 도움이 되는 개념이 있다. DFS 스패닝 트리와 그에 따른 간선 분류다. 어떤 연결된 그래프에 DFS를 수행할 때 탐색이 따라가는 간선들을 모아보면 트리 형태를 이루는 것을 알 수 있다. 이를 DFS 스패닝 트리라고 하는데 이러한 DFS 스패닝 트리를 생성하고 나면 그래프의 모든 간선을 다음과 같이 네 가지 중 하나로 분류할 수 있다.
 
-![dfs-spanning-tree]({{ site.url }}/assets/dfs-spanning-tree.png)
+![dfs-spanning-tree]({{ site.url }}/assets/img/dfs-spanning-tree.png)
 
 - 트리 간선(tree edge): 스패닝 트리에 포함된 간선
 - 순방향 간선(forward edge): 스패닝 트리를 구성하는 트리 간선은 아니지만, 스패닝 트리의 선조에서 자손으로 연결되는 간선
@@ -225,7 +226,7 @@ void dfs_spanning_tree(int u) { // in directed graph
 
 무방향 그래프에서 정점 u와 u와 연결된 간선들을 지웠을 때,  u가 속해있는 컴포넌트가 두 개 이상으로 나뉘어질 때, 이 정점 u를 단절점(Cur Vertex 또는 Articulation Point)라고 한다. 이러한 단절점을 찾는 가장 간단한 방법은 어떤 정점을 지운 후, 컴포넌트의 개수가 증가했는지 확인하는 것으로 총 $$V$$번의 DFS를 수행 되지만, DFS 스패닝 트리를 관찰하면 보다 효율적으로 단절점을 찾을 수 있다. 임의의 정점으로부터  DFS를 수행하여 얻은 DFS 스패닝 트리가 아래와 같다고 하자.
 
-![cut-vertex]({{ site.url }}/assets/cut-vertex.png)
+![cut-vertex]({{ site.url }}/assets/img/cut-vertex.png)
 
 $$u$$의 자식 노드가 $$v_1, v_2, v_2$$이고, 이 $$v_1, v_2, v_3$$ 각각을 루트로 하는 서브 트리가 형성되었다고 하자. 이때, 각각의 서브 트리와 $$u$$의 조상 노드가 모두 연결되어 있다면, (즉 역방향 간선이 존재하면) $$u$$를 없애도 컴포넌트가 나뉘어지지 않는다. 반대로 하나의 서브 트리라도 $$u$$의 선조들로 향하는 역방향 간선이 존재하지 않으면, $$u$$는 절단점이 된다.
 

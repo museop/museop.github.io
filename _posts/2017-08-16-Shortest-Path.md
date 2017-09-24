@@ -2,11 +2,12 @@
 layout: post
 title: 최단 경로(Shortest Path)
 comments: true
-category: problem solving
+category: algorithm
 tag: [graph, shortest path]
 ---
 * list element with functor item
 {:toc}
+
 # (1) 개념
 
 가중치가 없는 그래프에서 두 정점 사이의 최단 거리는 BFS를 이용하면 쉽게 구할 수 있다. 만약 가중치가 있는 그래프에서 임의의 두 정점 사이의 최단 경로를 구해야 한다면 다른 방법을 찾아야 한다.  
