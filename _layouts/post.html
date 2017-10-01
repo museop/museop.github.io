@@ -9,11 +9,9 @@ layout: default
             {{ content }}
         </section>
         {% include article-footer.html page=page share=page.share %}
-    </article>
+        {% include comments.html %}
+    </article> 
 </div>
 
-{% if site.disqus %}
-<section class="comments">
-    {% include disqus.html %}
-</section>
-{% endif %}
+
+
