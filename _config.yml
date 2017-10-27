@@ -4,10 +4,10 @@
 
 url:
 baseurl: ""
-title: Fall in coding
+title: 할 거 없으면 공부나 하자
 description:
-avatar: /assets/img/ogp.png
-favicon: /assets/img/ogp.png
+avatar: /assets/img/github_img.png
+favicon: /assets/img/github_img.png
 language: ko
 
 #
@@ -59,7 +59,7 @@ str_show_all_posts: Show all posts
 #
 # Recent posts.
 #
-recent_posts_num: 10
+recent_posts_num: 5
 
 #
 # Pagination.

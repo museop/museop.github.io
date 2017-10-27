@@ -198,4 +198,40 @@
             }
         }
     }
+    
+    .post-tags-item {
+        display: inline-block;
+        background: rgba(106, 159, 181, 0.15);
+        padding: 0 .5rem;
+        margin-right: .5rem;
+        border-radius: 4px;
+        color: #6a9fb5;
+        font-family: "PT Sans", Helvetica, Arial, sans-serif;
+        font-size: 90%;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out
+      }
+      
+      .post-tags-item:before {
+        content: "\f02b";
+        font-family: FontAwesome;
+        padding-right: .5em
+      }
+      
+      .post-tags-item:hover {
+        text-decoration: none;
+        background: #6a9fb5;
+        color: #fff
+      }
+
+      #markdown-toc:before {
+        content: "Contents";
+        font-weight: bold;
+      }
+      
+      #markdown-toc, #markdown-toc li, #markdown-toc li li, #markdown-toc li li li, #markdown-toc li li li li {
+        list-style-type: none;
+        padding: 5px;
+      }
 }
