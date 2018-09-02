@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      동적 계획법(Dynamic Programming) &middot; Pleasure of Learning
+    
+  </title>
+  <!-- FONT -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="/public/css/mycss.css">
+  
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  
+  <!-- MathJax -->
+  
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  
+</head>
+
+
+  <body>
+  
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>This Blog is using my study.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about.html">About</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/archive.html">Archive</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/category.html">Category</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/tags.html">Tags</a>
+        
+      
+    
+<!--
+    <a class="sidebar-nav-item" href="/archive/v1.0.1.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.1</span> -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2018. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Pleasure of Learning</a>
+            <small></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">동적 계획법(Dynamic Programming)</h1>
+  <span class="post-date"><time>13 Aug 2017</time></span>
+  <div class="post-tags">
+      
+        <a class="post-tags-item" href="http://localhost:4000/tags#algorithm paradigm">
+          <span>algorithm paradigm</span>
+        </a>
+      
+        <a class="post-tags-item" href="http://localhost:4000/tags#dynamic programming">
+          <span>dynamic programming</span>
+        </a>
+      
+  </div>
+
+  <h2 id="동적-계획법이란">동적 계획법이란?</h2>
+
+<p>동적 계획법(dynamic programming)은 최적화 문제를 풀기 위해 고안된 기법으로 복잡한 문제를 보다 간단한 여러 개의 부분 문제로 나누어 해결한다. 중요한 점은 한 번 계산한 부분 문제의 답을 저장해 두어 나중에 같은 부분 문제의 답을 이용할 때, 복잡한 연산 없이 바로 이용할 수 있도록 하는 것이 핵심이다. 주로 <strong>중복되는 부분 문제(overlapping sub-problems)</strong>와 <strong>최적 부분 구조(optimal substructure)</strong>를 가지고 있는 문제들을 풀때 사용된다. 보다 자세한 내용은 뒤에 후술한다.</p>
+
+<p>동적 계획법을 이용한 알고리즘을 설계할 때 가장 중요한 것은 <strong>현재 문제의 상태(state)</strong>와 <strong>현재 문제와 부분 문제간의 관계(relationship) 또는 전이(transitions)</strong>를 파악하는 것이다. 문제들간의 관계 또는 전이를 정확하게 파악하면 알고리즘의 정당성을 얻을 수 있고, 동적 계획법 알고리즘의 시간복잡도는 상태의 수와 한 상태의 답을 결정짓기 위한 시간에 비례하므로 이를 잘 고려하여 문제간의 상태와 관계를 잘 파악하는 것이 중요하기 때문이다.</p>
+
+<h3 id="중복되는-부분-문제overlapping-subproblems">중복되는 부분 문제(Overlapping subproblems)</h3>
+
+<p>주어진 문제를 여러 개의 부분 문제로 나누어 풀 때, 같은 부분 문제의 답을 여러 번 계산하는 경우가 있을 수 있다. 이런 부분 문제들을 중복되는 부분 문제 (overlapping subproblems)라고 한다. 동적 계획법에서는 이런 중복되는 부분 문제들을 단 한번만 계산하여 알고리즘의 속도를 최적화한다. 예를 들어 이항 계수(binomial coefficient)를 구하는 문제를 보자. 이항 계수 <script type="math/tex">\binom n r</script>은 <script type="math/tex">n</script>개의 서로 다른 원소 중에서 <script type="math/tex">r</script>개의 원소를 순서없이 고르는 방법의 수로, 다음과 같은 점화식(파스칼의 법칙)이 성립한다.</p>
+
+<p>​							<script type="math/tex">\binom n r = \binom {n-1} {r-1} + \binom {n-1} r</script></p>
+
+<p>위 점화식을 토대로  <script type="math/tex">\binom 4 2</script>를 재귀적으로 구한다고 하면 아래 왼쪽 그림과 같이  <script type="math/tex">\binom 2 1</script>을 구하는 과정이 중복된다는 사실을 인지할 수 있다. 사람이 직접 계산할 때에는 문제가 중복됨을 바로 인지하여 한 번만 계산할 수도 있겠지만 컴퓨터는 그렇지 못한다. 아래 오른쪽 그림과 같이 중복되는 부분 문제를 단 한번만 계산하도록 하는 것이 동적 계획법의 핵심이다.</p>
+
+<p><img src="http://localhost:4000/assets/overlapping-subproblems.png" alt="overlapping-subproblems" /></p>
+
+<h3 id="최적-부분-구조optimal-substructure">최적 부분 구조(Optimal substructure)</h3>
+
+<p>동적 계획법을 최적화 문제 풀이에 적용하려면, 주어진 문제에 중복되는 부분 문제 말고도 최적 부분 구조 (optimal substructure)라는 특성이 필요하다. 어떤 문제가 최적 부분 구조를 가진다는 것은 주어진 문제의 최적해를 그 문제의 부분 문제들의 최적해를 통해 얻을 수 있다는 것을 말한다. 예를 들어 아래 그림과 같이 서울에서 부산으로 가는 최단 경로 문제를 보자.</p>
+
+<p><img src="http://localhost:4000/assets/optimal-substructure.png" alt="optimal-substructure.png" /></p>
+
+<p>서울에서 부산으로 갈 때 반드시 대전을 지난다고 가정하면, 이 경로를 (서울 -&gt; 대전)과 (대전 -&gt; 부산)으로 나눌 수 있다. 그러면 두 구간의 최단 경로(각각 1km, 5km)를 찾아 둘을 이으면 항상 서울에서 부산으로 가는 최단 경로(6km)를 얻을 수 있게 된다. 이런 경우 전체 문제의 최적해(최단 거리)가 부분 문제들의 최적해를 통해 얻을 수 있으므로 최적 부분 구조를 가진다고 할 수 있다. 이러한 특성이 모든 최적화 문제에 성립하는 것은 아니다. 위의 문제에서 경로상에 통행료와 같은 다른 제약이 존재하고, 총 통행료 합이 얼마 이하여야만 한다는 특정 상황이 추가된다면 위에서 당연한 듯 보였던 최적 부분 구조는 성립하지 않게 된다. 따라서 동적 계획법을 최적화 문제 풀이에 적용하려면, 주어진 문제에 최적 부분 구조가 성립하는지를 잘 따져봐야 한다.</p>
+
+<h3 id="경우의-수와-확률counting-and-probability">경우의 수와 확률(Counting and Probability)</h3>
+
+<p>동적 계획법은 초기에 최적화 문제를 풀기 위해 고안되었지만 앞서 설명한 이항 계수를 구하는 문제와 같이 경우의 수를 세거나 확률을 계산하는 문제에서도 흔하게 사용된다. 경우의 수를 세는 문제들은 대게 재귀적인 특성을 가지고 있어 중복되는 부분 문제가 많고, 최적화 문제의 최적 부분 구조와 유사하게 어떤 문제의 경우의 수가 그 문제의 부분 문제들의 경우의 수들의 조합일 때가 많기 때문이다.</p>
+
+<h2 id="동적-계획법의-구현top-down-vs-bottom-up">동적 계획법의 구현(Top-Down vs Bottom-Up)</h2>
+
+<p>동적 계획법 알고리즘을 설계하였다면, 즉 문제의 상태와 문제들간의 관계 파악이 끝났다면 이를 코드로 구현해야 한다. 보통 두 가지 방식을 사용한다. 하나는 재귀 함수를 이용한 Top-Down 방식이고, 다른 하나는 반복문을 통해 DP 테이블을 채워나가는 Bottom-Up 방식이다. 두 방식 모두 각각의 장단점이 있으므로 문제의 특성을 고려하여 잘 선택하면 된다.</p>
+
+<h3 id="재귀-함수를-이용한-구현top-down-dp">재귀 함수를 이용한 구현(Top-Down DP)</h3>
+
+<p>재귀 함수를 이용한 구현은 대체로 직관적으로 와닿는다. 동적 계획법으로 해결할 수 있는 아주 간단한 문제중 하나인 피보나치 수열을 구하는 문제를 보자.  피보나치 수는 다음과 같이 정의되는 수열이다.</p>
+
+<script type="math/tex; mode=display">F_0=0, F_1=1</script>
+
+<script type="math/tex; mode=display">F_n=F_{n-1}+F_{n-2}</script>
+
+<p>n번째 피보나치 수는 재귀적으로 해결할 수 있음을 알 수 있다. 따라서 다음과 같이 구현할 수 있다.</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">];</span> <span class="c1">// initially set all -1
+</span>
+<span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+  <span class="kt">int</span><span class="o">&amp;</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">];</span> <span class="c1">// memoization
+</span>  <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>재귀 함수를 이용한 구현에서 눈여결 볼 부분은 <strong>메모이제이션(memoization)</strong> 부분이다. 메모이제이션 부분이 없다면 같은 부분 문제를 너무 많이 중복해서 계산하게 된다. 이러한 중복 계산을 방지하기 위해 한 번 계산해둔 부분 문제의 답은 기억해두고 다시 한 번 그 부분 문제의 답을 계산해야 하는 순간이 오면 기억해 둔 답을 바로 반환하면 된다.</p>
+
+<h3 id="반복문을-이용한-구현bottom-up-dp">반복문을 이용한 구현(Bottom-Up DP)</h3>
+
+<p>반복문을 이용한 구현은 부분 문제들간의 의존성을 파악하여 먼저 해결되어야 할 부분 문제부터 풀어나간다. 위에서 보았던 피보나치 수를 구하는 문제는 다음과 같이 구현할 수 있다.</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">fibo2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+  <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>이와 같이 각 부분 문제의 답에 해당하는 dp 배열을 반복문으로 채워나가는 방식이 표를 채워나가는 것처럼 보여서  <strong>Tabulation</strong>이라고도 한다.</p>
+
+<h3 id="두-방식의-비교">두 방식의 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Top-Down DP(Memoization)</th>
+      <th>Bottom-Up DP(Tabulation)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>장점</td>
+      <td>1. 대체로 코드를 직관적으로 이해할 수 있다.</td>
+      <td>1. 대체로 Top-Down 방식보다 빠르다.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>2. 필요한 부분 문제만을 계산한다. (이로 인해 종종 Bottom-Up 방식보다 빠를때도 있다.)</td>
+      <td>2. 슬라이딩 윈도우 기법을 사용하여 메모리 사용량을 절약하는 기법을 사용할 수 있을 때도 있다.</td>
+    </tr>
+    <tr>
+      <td>단점</td>
+      <td>1. 함수 호출 및 반환 방식으로 인한 오버헤드 때문에 Bottom-Up 방식에 비해 느리다.</td>
+      <td>1. 부분 문제들간의 의존성 파악을 정확하고, 이에 맞게 정확하게 DP 테이블을 채워나가야 한다.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>2. 가끔 메모리 제한이 엄격한 문제를 해결하지 못할 가능성이 있다.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="연습-문제">연습 문제</h2>
+
+<p>BOJ 2156 포도주 시식 (<a href="https://www.acmicpc.net/problem/2156">문제 보기</a>)</p>
+
+<p>BOJ 2507 공주 구하기 (<a href="https://www.acmicpc.net/problem/2507">문제 보기</a>)</p>
+
+<p>BOJ 10272 현상금 사냥꾼 김정은 (<a href="https://www.acmicpc.net/problem/10272">문제 보기</a>)</p>
+
+<p>BOJ 2618 경찰차 (<a href="https://www.acmicpc.net/problem/2618">문제 보기</a>)</p>
+
+<p>BOJ 9023 연습시즌 (<a href="https://www.acmicpc.net/problem/9023">문제 보기</a>)</p>
+
+<p>BOJ 2293 동전 1 (<a href="https://www.acmicpc.net/problem/2293">문제 보기</a>)</p>
+
+<p>BOJ 2294 동전 2 (<a href="https://www.acmicpc.net/problem/2294">문제 보기</a>)</p>
+
+<p>BOJ 11049 행렬 곱셈 순서 (<a href="https://www.acmicpc.net/problem/11049">문제 보기</a>)</p>
+
+<p>BOJ 11066 파일 합치기 (<a href="https://www.acmicpc.net/problem/11066">문제 보기</a>)</p>
+
+<p>BOJ 1912 연속합 (<a href="https://www.acmicpc.net/problem/1912">문제 보기</a>)</p>
+
+<p>CF 835C Star sky (<a href="http://codeforces.com/problemset/problem/835/C">문제 보기</a>)</p>
+
+<p>BOJ 1005 ACM Craft (<a href="https://www.acmicpc.net/problem/1005">문제 보기</a>)</p>
+
+<p>BOJ 2533 사회망 서비스(SNS) (<a href="https://www.acmicpc.net/problem/2533">문제 보기</a>)</p>
+
+<p>BOJ 2213 트리의 독립집합 (<a href="https://www.acmicpc.net/problem/2213">문제 보기</a>)</p>
+
+<p>BOJ 2266 금고 테스트 (<a href="https://www.acmicpc.net/problem/2266">문제 보기</a>)</p>
+
+<p>BOJ 13308 주유소 (<a href="https://www.acmicpc.net/problem/13308">문제 보기</a>)</p>
+
+<h3 id="최적해-구성하기">최적해 구성하기</h3>
+
+<p>BOJ 2662 기업 투자 (<a href="https://www.acmicpc.net/problem/2662">문제 보기</a>)</p>
+
+<p>BOJ 2618 경찰차 (<a href="https://www.acmicpc.net/problem/2618">문제 보기</a>)</p>
+
+<h3 id="k번째-사전순-답k-th-lexicographical-string">k번째 사전순 답(k-th lexicographical string)</h3>
+
+<p>BOJ 1023 괄호 문자열 (<a href="https://www.acmicpc.net/problem/1023">문제 보기</a>)</p>
+
+<p>AOJ KLIS K-th Longest Increasing Sequence (<a href="https://algospot.com/judge/problem/read/KLIS">문제 보기</a>)</p>
+
+<p>AOJ DRAGON 드래곤 커브 (<a href="https://algospot.com/judge/problem/read/DRAGON">문제 보기</a>)</p>
+
+<h3 id="비트마스크bitmask">비트마스크(Bitmask)</h3>
+
+<p>BOJ 2098 외판원 순회 (<a href="https://www.acmicpc.net/problem/2098">문제 보기</a>)</p>
+
+<p>BOJ 1014 컨닝 (<a href="https://www.acmicpc.net/problem/1014">문제 보기</a>)</p>
+
+<p>BOJ 1029 그림 교환 (<a href="https://www.acmicpc.net/problem/1029">문제보기</a>)</p>
+
+<h3 id="부분-상태--exponential-search">부분 상태 + Exponential Search</h3>
+
+<p>BOJ 11438 LCA2 (<a href="https://www.acmicpc.net/problem/11438">문제 보기</a>)</p>
+
+<p>BOJ 3117 YouTube (<a href="https://www.acmicpc.net/problem/3117">문제 보기</a>)</p>
+
+<h3 id="슬라이딩-윈도우sliding-window">슬라이딩 윈도우(Sliding Window)</h3>
+
+<p>BOJ 2096 내려가기 (<a href="https://www.acmicpc.net/problem/2096">문제 보기</a>)</p>
+
+<p>AOJ SUSHI 회전초밥 (<a href="https://algospot.com/judge/problem/read/SUSHI">문제 보기</a>)</p>
+
+<h3 id="행렬-곱셈을-이용한-고속-dp">행렬 곱셈을 이용한 고속 DP</h3>
+
+<p>BOJ 11444 피보나치 수6 (<a href="https://www.acmicpc.net/problem/11444">문제 보기</a>)</p>
+
+<p>BOJ 13328 Message Passing (<a href="https://www.acmicpc.net/problem/13328">문제 보기</a>)</p>
+
+<p>BOJ 1533 길의 개수 (<a href="https://www.acmicpc.net/problem/1533">문제 보기</a>)</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li>프로그래밍 대회에서 배우는 알고리즘 문제 해결 전략, 구종만</li>
+  <li>Competive Programming 3, Steven Halim</li>
+  <li>http://www.geeksforgeeks.org/dynamic-programming/</li>
+  <li>http://codeforces.com/blog/entry/325</li>
+</ul>
+
+
+</div>
+
+<div class="share">
+	<br>
+    <p>Share this post with: </p>
+	<a href="https://twitter.com/intent/tweet?text=동적 계획법(Dynamic Programming)@&amp;url=http://localhost:4000/algorithm/2017/08/13/Dynamic-Programming.html" class="twitter-share">
+		<span class="fa-stack fa-lg">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+		</span>
+	</a>
+
+	<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/algorithm/2017/08/13/Dynamic-Programming.html" class="facebook-share">
+		<span class="fa-stack fa-lg">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+		</span>
+	</a>
+
+	<a href="https://plus.google.com/share?url=http://localhost:4000/algorithm/2017/08/13/Dynamic-Programming.html" class="googleplus-share">
+		<span class="fa-stack fa-lg">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+		</span>
+	</a>
+</div>
+
+
+<div class="comments">
+    
+		<div id="disqus_thread"></div>
+		<script>
+
+		/**
+		*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+		*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+		/*
+		var disqus_config = function () {
+		this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+		};
+		*/
+		(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = 'https://museop.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+		})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    
+</div>
+
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/09/12/Binary-Search.html">
+            이진 탐색(Binary Search)
+            <small>12 Sep 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/data%20structure/2017/09/12/Binary-Search-Tree.html">
+            이진검색트리(Binary Search Tree)
+            <small>12 Sep 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/data%20structure/2017/09/11/Square-Decomposition.html">
+            평방 분할 기법(Square Root Decomposition)
+            <small>11 Sep 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

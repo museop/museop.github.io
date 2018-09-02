@@ -1,0 +1,28 @@
+
+
+# Setup
+title:               Pleasure of Learning
+tagline:             ''
+description:         'This Blog is using my study.'
+url:                 http://museop.github.io
+baseurl:             ''
+paginate:            4
+
+# About/contact
+author:
+  name:              Kim Museop
+  url:               
+  email:             robustflame@gmail.com
+
+# Custom vars
+version:             1.0.1
+
+plugins: [jekyll-paginate]
+paginate_path: "page:num"
+
+markdown: kramdown
+
+math: true
+
+disqus_shortname: museop
+
