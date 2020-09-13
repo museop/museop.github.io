@@ -2,7 +2,7 @@
 layout: post
 title: 그래프 탐색(Graph Search)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [graph, graph search]
 ---
 

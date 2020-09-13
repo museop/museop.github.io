@@ -2,7 +2,7 @@
 layout: post
 title: 구간 트리(Segment Tree)
 comments: true
-category: Data structure
+category: Computer Algorithm
 tag: [tree, segment tree]
 ---
 ## 구간 트리란?

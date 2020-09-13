@@ -2,7 +2,7 @@
 layout: post
 title: 이진검색트리(Binary Search Tree)
 comments: true
-category: Data structure
+category: Computer Algorithm
 tag: [search, tree, binary search tree]
 ---
 

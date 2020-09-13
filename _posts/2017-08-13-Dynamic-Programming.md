@@ -2,7 +2,7 @@
 layout: post
 title: 동적 계획법(Dynamic Programming)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [algorithm paradigm, dynamic programming]
 ---
 

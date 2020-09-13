@@ -2,7 +2,7 @@
 layout: post
 title: 네트워크 유량(Network Flow)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [graph, network flow, bipartite matching]
 ---
 ## 최대 유량(Maximum Flow)

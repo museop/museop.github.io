@@ -2,7 +2,7 @@
 layout: post
 title: 이진 탐색(Binary Search)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [search, binary search]
 ---
 검색이란 여러 자료들로 이루어진 특정 자료 구조에서 주어진 키(key)에 해당하는 자료를 찾아내는 것을 말한다. 검색 알고리즘은 정렬 알고리즘과 함께 많은 프로그램, 알고리즘에서 필수 요소로 사용되기 때문에 가장 많이 연구된 알고리즘이다. 프로그래머라면 여러 유명한 검색 알고리즘들에 대해서 잘 숙지하고 활용할 수 있어야 한다.

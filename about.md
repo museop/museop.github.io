@@ -3,4 +3,5 @@ layout: page
 title: About
 ---
 
-나중에 작성..
+# Career
+- 2018~: Samsung Electronics IT&Mobile Communications Software engineer

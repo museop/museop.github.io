@@ -2,7 +2,7 @@
 layout: post
 title: 완전탐색(Complete Search)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [algorithm paradigm, complete search, brute force search, exhaustive search]
 ---
 알고리즘을 공부하다보면 알고리즘 패러다임(algorithm paradigm)이라는 것을 배우게 된다. 위키피디아의 정의에 따르면 [패러다임(paradigm)](https://en.wikipedia.org/wiki/Paradigm)이란 '어떤 한 시대 사람들의 견해나 사고를 근본적으로 규정하고 있는 테두리로서의 인식 체계, 또는 사물에 대한 이론적인 틀이나 체계를 의미하는 개념'이다. 비슷하게 알고리즘 패러다임이란 여러 알고리즘들을 묶을 수 있는 개념이 아닐까라고 조심스럽게 생각해본다. 대표적인 알고리즘 패러다임으로는 완전탐색(Complete search), 분할정복(Divide-and-conquer), 동적계획법(Dynamic programming), 탐욕법(Greedy method) 등이 있다. 이들은 모두 많은 알고리즘의 토대가 되는 기본 틀을 제공하므로 문제를 잘 해결하고 싶은 사람이라면 꼭 알아두어야 한다. 이번 포스트에서는 알고리즘의 설계할 때 가장 먼저 생각해봐야 하는 완전탐색에 대해서 간략하게 소개하고자 한다.

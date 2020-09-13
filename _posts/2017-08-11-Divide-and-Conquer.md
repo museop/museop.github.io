@@ -2,7 +2,7 @@
 layout: post
 title: 분할 정복(Divide and Conquer)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [algorithm paradigm, divide and conquer]
 ---
 

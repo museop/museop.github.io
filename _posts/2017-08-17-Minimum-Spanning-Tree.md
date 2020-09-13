@@ -2,7 +2,7 @@
 layout: post
 title: 최소 스패닝 트리(Minimum Spanning Tree)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [graph, minimum spanning tree, tree, kruskal algorithm, prim algorithm, disjoint set]
 ---
 ## 최소 스패닝 트리란?

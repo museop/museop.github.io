@@ -2,7 +2,7 @@
 layout: post
 title: 평방 분할 기법(Square Root Decomposition)
 comments: true
-category: Data structure
+category: Computer Algorithm
 tag: [sqrt root decomposition]
 ---
 ## Square Root Decomposition

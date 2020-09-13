@@ -2,7 +2,7 @@
 layout: post
 title: 탐욕법(Greedy Method)
 comments: true
-category: Algorithm
+category: Computer Algorithm
 tag: [algorithm paradigm, greedy]
 ---
 
