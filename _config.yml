@@ -23,7 +23,7 @@ title: Pleasure of Learning
 description: >- # this means to ignore newlines until "baseurl:"
   공부하는 것을 정리하는 곳입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://museop.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # About/contact
 author:
