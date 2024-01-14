@@ -142,7 +142,7 @@ vector<int> spfa(int src) {
 
 <br>
 
-$$ dist[k][u][v] =min\begin{cases}dist[k-1][u][k] + dist[k-1][k][v]  \\ dist[k-1[u][v] \end{cases} $$ 
+$$ dist[k][u][v] =min\begin{cases}dist[k-1][u][k] + dist[k-1][k][v]  \\ dist[k-1][u][v] \end{cases} $$ 
 
 <br>
 
